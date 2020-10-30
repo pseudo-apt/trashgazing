@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from sgp4.earth_gravity import wgs84
 from sgp4.io import twoline2rv
 from sgp4.ext import jday
@@ -12,21 +10,7 @@ from datetime import datetime
 satellites = []
 
 def download_tle():
-    space_track_username = input('Enter your space-track username: ')
-    space_track_password = getpass.getpass('Enter your space-track password: ')
-    if not (space_track_username and space_track_password):
-        print('Username and password cannot be blank')
-        exit(1)
-    shell_command_get_cookies = 'curl -c cookies.txt -b cookies.txt ' +             \
-        'https://www.space-track.org/ajaxauth/login -d "identity={}&password={}"'   \
-        .format(space_track_username, space_track_password)
-    shell_command_get_tle = 'curl --cookie cookies.txt ' +          \
-            'https://www.space-track.org/basicspacedata/query/' +   \
-            'class/tle_latest/OBJECT_TYPE/DEBRIS/' +                \
-            'orderby/ORDINAL%20asc/limit/65000/format/tle/' +       \
-            'emptyresult/show > tle.txt'
-    os.system(shell_command_get_cookies)
-    os.system(shell_command_get_tle)
+    pass
 
 def load_tle_data():
     now = datetime.now()

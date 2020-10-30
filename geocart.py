@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
-
-'''
+"""
 This module provides conversion between Geographic and Cartesian coordinates
-'''
+"""
 
 from math import cos, sin, asin, atan2, degrees, radians
 
