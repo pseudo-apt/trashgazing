@@ -2,6 +2,7 @@ from sgp4.earth_gravity import wgs84
 from sgp4.io import twoline2rv
 from sgp4.ext import jday
 from geocart import geo2cart, cart2geo
+from spacetrack import SpaceTrackClient
 
 import os
 import getpass
@@ -10,7 +11,17 @@ from datetime import datetime
 satellites = []
 
 def download_tle():
-    pass
+    """
+    Because the API is unstable, we can download it for testing
+    """
+    user = ""
+    password = ""
+    c = SpaceTrackClient(user, password)
+    c.authenticate()
+    data = c.get_space_debris()
+    with open('tle.txt', 'w') as f:
+        f.write(data)
+    c.close()
 
 def load_tle_data():
     now = datetime.now()
@@ -40,7 +51,7 @@ def find_nearby_debris(current_location: tuple):
     and return a list of nearby 'visible' debris
     '''
 
-#download_tle()
+download_tle()
 #load_tle_data()
 #print(satellites)
 #print(len(satellites))
